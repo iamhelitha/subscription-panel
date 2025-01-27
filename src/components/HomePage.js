@@ -3,9 +3,9 @@ import React from "react";
 const HomePage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-darkBlue text-white">
-      <h1 className="text-4xl font-bold mb-4">Hutto</h1>
+      <h1 className="text-4xl font-bold mb-4">Site is under Development</h1>
       <p className="text-lg mb-6">
-        Raptor Karima GAY 
+        See you later when the site is ready to use.
       </p>
       <a
         href="/login"
