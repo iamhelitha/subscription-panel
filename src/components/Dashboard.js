@@ -9,22 +9,31 @@ const Dashboard = () => {
     setApiLoginStatus("Connecting to API...");
     setDebugInfo(null); // Clear previous debug info
 
-    const loginResponse = await apiLogin();
+    try {
+      const loginResponse = await apiLogin();
 
-    if (loginResponse.success) {
-      setApiLoginStatus("API Login Successful!");
-      setDebugInfo({
-        status: "Success",
-        message: loginResponse.message,
-        headers: loginResponse.headers,
-      });
-    } else {
-      setApiLoginStatus(`API Login Failed: ${loginResponse.message}`);
+      if (loginResponse.success) {
+        setApiLoginStatus("API Login Successful!");
+        setDebugInfo({
+          status: "Success",
+          message: loginResponse.message,
+          headers: loginResponse.headers,
+        });
+      } else {
+        setApiLoginStatus(`API Login Failed: ${loginResponse.message}`);
+        setDebugInfo({
+          status: "Failed",
+          message: loginResponse.message,
+          error: loginResponse.error,
+          headers: loginResponse.headers,
+        });
+      }
+    } catch (error) {
+      setApiLoginStatus("API Login Failed: API Login Request Failed");
       setDebugInfo({
         status: "Failed",
-        message: loginResponse.message,
-        error: loginResponse.error,
-        headers: loginResponse.headers,
+        message: "API Login Request Failed",
+        error: error.message,
       });
     }
   };
